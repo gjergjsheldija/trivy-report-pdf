@@ -118,12 +118,12 @@ func main() {
 				return cmd.Help()
 			}
 
-			// Traditional scan2html pattern: command target filename
-			// Example: trivy pdf image alpine:latest report.pdf
+			// Traditional scan pattern: command target filename
+			// Example: trivy pdf image alpine:latest report
 			if from == "" && len(args) >= 2 {
-				// Assume the last arg is output filename if it doesn't look like a target?
-				// Actually scan2html uses --output for flags.
-				// Let's try to match scan2html's logic if possible.
+				// Handle output filename if not provided by flag
+				
+				// Let's try to match standard subcommand logic.
 				
 				// If we have flags, find where --pdf-flags starts?
 				// For now, let's keep it simple: if from is empty, we run a scan.
