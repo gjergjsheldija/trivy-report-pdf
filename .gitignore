@@ -1,2 +1,10 @@
+# Binaries
+trivy-pdf
+trivy-pdf.exe
+
+# Reports
 *.json
 *.pdf
+
+# Scan tmp files
+trivy_scan_output.json

@@ -7,7 +7,7 @@ description: |-
   trivy pdf [COMMAND] [TARGET] [OUTPUT]
   trivy pdf generate --from report.json --output report.pdf
 maintainer: "Gjergj <gjergj@sheldija.net>"
-repository: "https://github.com/gjergjsheldija/trivy-pdf"
+repository: "https://github.com/gjergjsheldija/trivy-report-pdf"
 platforms:
   - selector:
       os: linux
