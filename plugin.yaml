@@ -1,0 +1,27 @@
+name: "pdf"
+version: "0.1.0"
+usage: "generate a PDF report from Trivy results"
+description: |-
+  A Trivy plugin that generates PDF reports from scan results.
+  Supports scanning images, filesystems, and generating from existing JSON reports.
+  trivy pdf [COMMAND] [TARGET] [OUTPUT]
+  trivy pdf generate --from report.json --output report.pdf
+maintainer: "Gjergj <gjergj@sheldija.net>"
+repository: "https://github.com/gjergjsheldija/trivy-pdf"
+platforms:
+  - selector:
+      os: linux
+      arch: amd64
+    bin: "./trivy-pdf"
+  - selector:
+      os: darwin
+      arch: amd64
+    bin: "./trivy-pdf"
+  - selector:
+      os: darwin
+      arch: arm64
+    bin: "./trivy-pdf"
+  - selector:
+      os: windows
+      arch: amd64
+    bin: "./trivy-pdf.exe"
