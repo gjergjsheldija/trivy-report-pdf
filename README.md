@@ -40,9 +40,14 @@ trivy pdf image alpine:latest --output my_scan
 
 ## Flags
 
-* `--from`: Comma separated JSON scan result files (standard Trivy or SPDX-JSON).
-* `--output`: Prefix for the output PDF files (e.g., `audit`).
-* `--report-title`: Custom title displayed at the top of the PDF.
+The following flags can be used with any scan command (`image`, `fs`, `k8s`) or the `generate` command:
+
+*   **`--output`** (or positional): The prefix for the output PDF files. If you provide `audit`, the plugin generates `audit_sbom.pdf` and `audit_vulns.pdf`. (Default: `report`).
+*   **`--report-title`**: Custom title displayed at the top of the generated PDF reports. (Default: `Trivy Scan Report`).
+*   **`--from`**: (Required for `generate`) Comma-separated list of existing Trivy JSON or SPDX-JSON result files to process.
+*   **`--with-epss`**: Include EPSS scores in the report. (Note: Currently always enabled in the visual audit if data is present).
+*   **`--with-exploits`**: Include exploit information in the report. (Note: Currently a placeholder for future detailed exploit mapping).
+*   **`--report`**: Specifies report type. (Note: Currently a placeholder for standardizing output formats).
 
 ## Development
 
