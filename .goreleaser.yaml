@@ -1,0 +1,45 @@
+# .goreleaser.yaml
+version: 2
+project_name: trivy-pdf
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    main: ./main.go
+    binary: trivy-pdf
+
+archives:
+  - format: tar.gz
+    # this name template makes the output match the URIs we put in plugin.yaml
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else }}{{ .Os | title }}{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}{{ .Arch | upper }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
