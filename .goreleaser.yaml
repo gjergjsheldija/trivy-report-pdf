@@ -24,9 +24,13 @@ builds:
 
 archives:
   - formats: [tar.gz]
-    # this name template makes the output match the URIs we put in plugin.yaml
-    name_template: >-
-      {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else }}{{ .Os | title }}{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}{{ .Arch | ToUpper }}{{ end }}
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}-{{ .Arch }}"
+    replacements:
+      darwin: macOS
+      linux: Linux
+      windows: Windows
+      amd64: 64bit
+      arm64: ARM64
     format_overrides:
       - goos: windows
         formats: [zip]
