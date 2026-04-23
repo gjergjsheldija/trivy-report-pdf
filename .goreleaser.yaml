@@ -23,19 +23,19 @@ builds:
     binary: trivy-pdf
 
 archives:
-  - format: tar.gz
+  - formats: [tar.gz]
     # this name template makes the output match the URIs we put in plugin.yaml
     name_template: >-
-      {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else }}{{ .Os | title }}{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}{{ .Arch | upper }}{{ end }}
-    format_overrides:
+      {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else }}{{ .Os | title }}{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}{{ .Arch | ToUpper }}{{ end }}
+    formats_overrides:
       - goos: windows
-        format: zip
+        formats: [zip]
 
 checksum:
   name_template: 'checksums.txt'
 
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 
 changelog:
   sort: asc
