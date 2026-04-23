@@ -24,13 +24,8 @@ builds:
 
 archives:
   - formats: [binary]
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}-{{ .Arch }}"
-    replacements:
-      darwin: macOS
-      linux: Linux
-      windows: Windows
-      amd64: 64bit
-      arm64: ARM64
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else if eq .Os "linux" }}Linux{{ else }}Windows{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}ARM64{{ end }}
 
 checksum:
   name_template: 'checksums.txt'
