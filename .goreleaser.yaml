@@ -23,9 +23,12 @@ builds:
     binary: trivy-pdf
 
 archives:
-  - formats: [binary]
+  - formats: [tar.gz]
     name_template: >-
       {{ .ProjectName }}_{{ .Version }}_{{ if eq .Os "darwin" }}macOS{{ else if eq .Os "linux" }}Linux{{ else }}Windows{{ end }}-{{ if eq .Arch "amd64" }}64bit{{ else }}ARM64{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: [zip]
 
 checksum:
   name_template: 'checksums.txt'
